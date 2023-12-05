@@ -12,36 +12,6 @@
       <!-- estilos de bootstrap menu -->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-      <!-- expotar firebase -->
-      <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-        import{ getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js"
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-          apiKey: "AIzaSyCWcJP6UDdJwZ0llG2HUpZeeUrHAw51atQ",
-          authDomain: "septimo-c0702.firebaseapp.com",
-          databaseURL: "https://septimo-c0702-default-rtdb.firebaseio.com",
-          projectId: "septimo-c0702",
-          storageBucket: "septimo-c0702.appspot.com",
-          messagingSenderId: "254378631855",
-          appId: "1:254378631855:web:a6c600de0f8a3f08666a5a"
-        };
-      
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const database = getDtabase(app);
-
-        window.crearRegistro = function (){
-            const nombre = document.getElementById("nombre").values;
-            const email = document.getElementById("email").values;
-        }
-      </script>
-
-
       <!-- estilos -->
     <style>
         body {
@@ -216,6 +186,35 @@
   <!-- Botón de envío del formulario -->
   <button type="submit">Crear registro</button>
 </form>
+
+<!-- expotar firebase -->
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+    import{ getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js"
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCWcJP6UDdJwZ0llG2HUpZeeUrHAw51atQ",
+      authDomain: "septimo-c0702.firebaseapp.com",
+      databaseURL: "https://septimo-c0702-default-rtdb.firebaseio.com",
+      projectId: "septimo-c0702",
+      storageBucket: "septimo-c0702.appspot.com",
+      messagingSenderId: "254378631855",
+      appId: "1:254378631855:web:a6c600de0f8a3f08666a5a"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDtabase(app);
+
+    window.crearRegistro = function (){
+        const nombre = document.getElementById("nombre").values;
+        const email = document.getElementById("email").values;
+    }
+  </script>
 
       <!-- script de bootstrap y jquery del menu -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
