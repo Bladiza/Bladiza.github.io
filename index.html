@@ -1,235 +1,53 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TAREA COMPUTACION EN LA NUBE</title>
+<html>
+    <head>
 
-    <!-- estilos de bootstrap -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-      <!-- estilos de bootstrap carrucel -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-      <!-- estilos de bootstrap menu -->
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <form id="crud-form">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id = "nombre">
+            <label for="edad">Edad:</label>
+            <input type="number" id = "edad">
+            <button type="button" onclick="crearRegistro()">Crear</button>
+        </form>
 
-      <!-- estilos -->
-    <style>
-        body {
-            padding-top: 70px; /* Ajuste para que el menú no se superponga en el contenido */
-        }
 
-    </style>
-    <style>
-        /* Agrega estilos personalizados si es necesario */
-        .gallery-container {
-            margin-top: 20px;
-        }
-        .gallery-item {
-            margin-bottom: 20px;
-        }
-    </style>
-</head>
-<body>
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+            import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+          
+            // Your web app's Firebase configuration
+            const firebaseConfig = {
+              apiKey: "AIzaSyBMJsVpnbOwVOiVNbTZScZdet9qlGigDL0",
+              authDomain: "conexion-8ec0d.firebaseapp.com",
+              databaseURL: "https://conexion-8ec0d-default-rtdb.firebaseio.com",
+              projectId: "conexion-8ec0d",
+              storageBucket: "conexion-8ec0d.appspot.com",
+              messagingSenderId: "679910299749",
+              appId: "1:679910299749:web:9800b464879628b4850e8c"
+            };
+          
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const database = getDatabase(app);
 
-    <!-- Barra de navegación de Bootstrap -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="#"><img src="images/logo.png" height="75px" alt=""></a>
-        <h1 id="titulo-principal" style="color:white;" class="centra"> ANIME SAKURA </h1>
+            window.crearRegistro = function () {
+                const nombre = document.getElementById("nombre").value;
+                const edad = document.getElementById("edad").value;
+                console.log(nombre, edad);
+                
+                push(
+                    ref(database, 'septimo'),
+                    {
+                        name: nombre,
+                        age: edad 
+                    }
+                );
 
-        <!-- Contenido del menú -->
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="lista.html">Lista de animes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="tienda.html">Tienda</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contacto</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <!-- Creacion del carrucel -->
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="images/imagen4.png" class="d-block w-100" alt="">
-            </div>
-            <div class="carousel-item">
-                <img src="images/imagen3.png" class="d-block w-100" alt="">
-            </div>
-            <div class="carousel-item">
-                <img src="images/imagen2.png" class="d-block w-100" alt="">
-            </div>
-            <div class="carousel-item">
-                <img src="images/imagen5.png" class="d-block w-100" alt="">
-            </div>
-            <div class="carousel-item">
-                <img src="images/imagen6.png" class="d-block w-100" alt="">
-            </div>
-            <div class="carousel-item">
-                <img src="images/imagen1.png" class="d-block w-100" alt="">
-            </div>
-        </div>
-    </div>
-    <br>
-<!-- Creacion de la galeria -->
-  <h1>Galeria de ANIME</h1>
-  <br>
-  <h1>Hola me llamo Jose y soy estudiante de sistemas de informacion</h1>
-    <div class="container gallery-container">
-        <div class="row">
-            <!-- Primer Contenedor -->
-            <div class="col-md-4 gallery-item">
-                <img src="images/galeri1.png" class="img-fluid" alt="">
-                <h4 class="mt-2">A Sign of Affection (Yubisaki to Renren) anuncia la fecha de estreno de su anime</h4>
-                <p>Tras conocerse con anterioridad que el anime debutaría durante el mes de enero de 2024, ahora y</p>
-            </div>
-
-            <!-- Segundo Contenedor -->
-            <div class="col-md-4 gallery-item">
-                <img src="images/galeri2.png" class="img-fluid" alt="">
-                <h4 class="mt-2">Vinland Saga: El creador del manga revela su arco favorito de la historia, ¿coincide con el tuyo?</h4>
-                <p>Makoto Yukimura ha hablado del arco de Vinland Saga que más le ha gustado de cuantos ha creado</p>
-            </div>
-
-            <!-- Tercer Contenedor -->
-            <div class="col-md-4 gallery-item">
-                <img src="images/galeri3.png" class="img-fluid" alt="">
-                <h4 class="mt-2">¿Guerra entre los fans de Frieren y Fullmetal Alchemist: Brotherhood? ¿Review bombing?</h4>
-                <p>Por primera vez en mucho tiempo hay un nuevo rey en MAL, y por primera vez en mucho tiempo cae la</p>
-            </div>
-        </div>
-    </div>
-    <br>
-    <div class="container gallery-container">
-        <div class="row">
-            <!-- Primer Contenedor -->
-            <div class="col-md-4 gallery-item">
-                <img src="images/galeri4.png" class="img-fluid" alt="">
-                <h4 class="mt-2">El autor de Vinland Saga habla sobre el final del manga, y podría ser uno muy trágico</h4>
-                <p>Makoto Yukimura no parece tener del todo claro cómo puede montar un final feliz para Thorfinn</p>
-            </div>
-
-            <!-- Segundo Contenedor -->
-            <div class="col-md-4 gallery-item">
-                <img src="images/galeri5.png" class="img-fluid" alt="">
-                <h4 class="mt-2">Dragon Ball Super: En el capítulo 100 del manga ocurrirá algo 'inesperado' y 'loco'</h4>
-                <p>El editor del manga de Dragon Ball Super nos pone la miel en los labios con el próximo arco de la</p>
-            </div>
-
-            <!-- Tercer Contenedor -->
-            <div class="col-md-4 gallery-item">
-                <img src="images/galeri6.png" class="img-fluid" alt="">
-                <h4 class="mt-2">El capítulo 1099 de One Piece incluye una supuesta pista sobre los poderes de Monkey D. Dragon</h4>
-                <p>Eiichiro Oda sigue sin soltar prenda sobre la verdadera fuerza del padre de Luffy</p>
-            </div>
-        </div>
-    </div>
-    <br>
-    <div class="container gallery-container">
-        <div class="row">
-            <!-- Primer Contenedor -->
-            <div class="col-md-4 gallery-item">
-                <img src="images/galeri7.png" class="img-fluid" alt="">
-                <h4 class="mt-2">Shingeki no Kyojin: así es la increíble edición coleccionista del manga que llega hoy a las tiendas alt=""</h4>
-                <p>Norma Editorial inicia su colección Integral de una de las mejores obras de la historia</p>
-            </div>
-
-            <!-- Segundo Contenedor -->
-            <div class="col-md-4 gallery-item">
-                <img src="images/galeri8.png" class="img-fluid" alt="">
-                <h4 class="mt-2">Jujutsu Kaisen: el episodio 18 de la temporada 2 del anime retrasa su emisión; ¿empieza la debacle?</h4>
-                <p>Los problemas de producción de Jujutsu Kaisen empiezan a afectar a la emisión semanal, ¿será este</p>
-            </div>
-
-            <!-- Tercer Contenedor -->
-            <div class="col-md-4 gallery-item">
-                <img src="images/galeri9.png" class="img-fluid" alt="">
-                <h4 class="mt-2">Tokyo Revengers: horario y dónde ver el episodio 9 de la temporada 3 </h4>
-                <p>Este anime seguirá desarrollando el arco de la Tenjiku en tan solo unos días, pues es lo que falta</p>
-            </div>
-        </div>
-    </div>
-
-    <h1>Formulario Básico</h1>
-
-<form action="/procesar_formulario" method="post">
-  <!-- Campo de texto para el nombre -->
-  <label for="nombre">Nombre:</label>
-  <input type="text" id="nombre" name="nombre" required>
-
-  <br>
-
-  <!-- Campo de correo electrónico -->
-  <label for="email">Correo electrónico:</label>
-  <input type="email" id="email" name="email" required>
-
-  <br>
-
-  <!-- Campo de selección (lista desplegable) -->
-  <label for="edad">Edad:</label>
-  <select id="edad" name="edad" required>
-    <option value="menos de 18">Menos de 18</option>
-    <option value="18-30">18-30</option>
-    <option value="31-50">31-50</option>
-    <option value="más de 50">Más de 50</option>
-  </select>
-
-  <br>
-
-  <!-- Botón de envío del formulario -->
-  <button type="submit">Crear registro</button>
-</form>
-
-<!-- expotar firebase -->
-
-<script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-    import{ getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js"
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-  
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyCWcJP6UDdJwZ0llG2HUpZeeUrHAw51atQ",
-      authDomain: "septimo-c0702.firebaseapp.com",
-      databaseURL: "https://septimo-c0702-default-rtdb.firebaseio.com",
-      projectId: "septimo-c0702",
-      storageBucket: "septimo-c0702.appspot.com",
-      messagingSenderId: "254378631855",
-      appId: "1:254378631855:web:a6c600de0f8a3f08666a5a"
-    };
-  
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const database = getDtabase(app);
-
-    window.crearRegistro = function (){
-        const nombre = document.getElementById("nombre").values;
-        const email = document.getElementById("email").values;
-        console.log(nombre, email);
-    }
-  </script>
-
-      <!-- script de bootstrap y jquery del menu -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-    <!-- script de bootstrap y jquery del carrucel -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <!-- script de bootstrap y jquery de la barra de navegación -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-</body>
+            }
+          </script>
+    </body>
 </html>
