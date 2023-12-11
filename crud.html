@@ -1,68 +1,72 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crud de deportes</title>
-</head>
-<body>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
 
-<h2>Inscripcion de los usuarios para Deportes</h2>
+  </body>
+</html>
 
-<form id="crudForm">
-    <label for="cedula">Cedula:</label>
-    <input type="text" id="cedula" required>
-    <br>
-    <br>
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" required>
-    <br>
-    <br>
-    <label for="apellido">Apellido:</label>
-    <input type="text" id="apellido" required>
-    <br>
-    <br>
-    <label for="email">Email:</label>
-    <input type="email" id="email" required>
-    <br>
-    <br>
-    <label for="deporte">Deporte:</label>
-    <input type="text" id="deporte" required>
-    <button type="button" onclick="agregarUsuario()">Agregar Usuario</button>
-</form>
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+    <head>
+      <meta charset="utf-8">
+      <title>Crud registri de Deporte</title>
+    </head>
+    <body>
+        <form id="crud-form">
+          <label for="cedula">Cedula:</label>
+          <input type="text" id = "nombre">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id = "nombre">
+          <label for="apellido">Apellido:</label>
+          <input type="text" id = "apellido">
+          <label for="edad">Edad:</label>
+          <input type="number" id = "edad">
+          <label for="deporte">Deporte:</label>
+          <input type="text" id = "deporte">
+          <button type="button" onclick="crearRegistro()">Crear</button>
+        </form>
+
 
         <script type="module">
-            // Import the functions you need from the SDKs you need
-            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-            import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
-            // TODO: Add SDKs for Firebase products that you want to use
-            // https://firebase.google.com/docs/web/setup#available-libraries
-          
-            // Your web app's Firebase configuration
-            const firebaseConfig = {
-              apiKey: "AIzaSyBMJsVpnbOwVOiVNbTZScZdet9qlGigDL0",
-              authDomain: "conexion-8ec0d.firebaseapp.com",
-              databaseURL: "https://conexion-8ec0d-default-rtdb.firebaseio.com",
-              projectId: "conexion-8ec0d",
-              storageBucket: "conexion-8ec0d.appspot.com",
-              messagingSenderId: "679910299749",
-              appId: "1:679910299749:web:9800b464879628b4850e8c"
-            };
-          
+          // Import the functions you need from the SDKs you need
+          import { initializeApp } from "firebase/app";
+          // TODO: Add SDKs for Firebase products that you want to use
+          // https://firebase.google.com/docs/web/setup#available-libraries
+
+          // Your web app's Firebase configuration
+          const firebaseConfig = {
+            apiKey: "AIzaSyCWcJP6UDdJwZ0llG2HUpZeeUrHAw51atQ",
+            authDomain: "septimo-c0702.firebaseapp.com",
+            databaseURL: "https://septimo-c0702-default-rtdb.firebaseio.com",
+            projectId: "septimo-c0702",
+            storageBucket: "septimo-c0702.appspot.com",
+            messagingSenderId: "254378631855",
+            appId: "1:254378631855:web:a6c600de0f8a3f08666a5a"
+          };
             // Initialize Firebase
             const app = initializeApp(firebaseConfig);
             const database = getDatabase(app);
 
             window.crearRegistro = function () {
+                const cedula = document.getElementById("cedula").value;
                 const nombre = document.getElementById("nombre").value;
+                const apellido = document.getElementById("apellido").value;
                 const edad = document.getElementById("edad").value;
-                console.log(nombre, edad);
-                
+                const deporte = document.getElementById("deporte").value;
+                console.log(cedula, nombre, apellido, edad, deporte);
+
                 push(
-                    ref(database, 'septimo'),
+                    ref(database, 'Jose_iza'),
                     {
+                        cedula:cedula,
                         name: nombre,
-                        age: edad 
+                        apellido:apellido,
+                        age: edad,
+                        deporte:deporte
                     }
                 );
 
@@ -71,80 +75,3 @@
     </body>
 </html>
 
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crud de deportes</title>
-</head>
-<body>
-
-<h2>Inscripcion de los usuarios para Deportes</h2>
-
-<form id="crudForm">
-    <label for="cedula">Cedula:</label>
-    <input type="text" id="cedula" required>
-    <br>
-    <br>
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" required>
-    <br>
-    <br>
-    <label for="apellido">Apellido:</label>
-    <input type="text" id="apellido" required>
-    <br>
-    <br>
-    <label for="email">Email:</label>
-    <input type="email" id="email" required>
-    <br>
-    <br>
-    <label for="deporte">Deporte:</label>
-    <input type="text" id="deporte" required>
-    <button type="button" onclick="agregarUsuario()">Agregar Usuario</button>
-
-    <script type="module">
-    // Import the functions you need from the SDKs you need
-        import { initializeApp } from "firebase/app";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-        
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-          apiKey: "AIzaSyCWcJP6UDdJwZ0llG2HUpZeeUrHAw51atQ",
-          authDomain: "septimo-c0702.firebaseapp.com",
-          databaseURL: "https://septimo-c0702-default-rtdb.firebaseio.com",
-          projectId: "septimo-c0702",
-          storageBucket: "septimo-c0702.appspot.com",
-          messagingSenderId: "254378631855",
-          appId: "1:254378631855:web:a6c600de0f8a3f08666a5a"
-        };
-        
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-            const database = getDatabase(app);
-
-            window.crearRegistro = function () {
-                const nombre = document.getElementById("nombre").value;
-                const apellido = document.getElementById("apellido").value;
-                console.log(nombre, apellido);
-                
-                push(
-                    ref(database, 'septimo'),
-                    {
-                        name: nombre,
-                        name: apellido
-                    }
-                );
-
-            }
-        
-        </script>
-</form>
-</body>
-</html>
